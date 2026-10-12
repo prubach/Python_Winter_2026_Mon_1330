@@ -1,3 +1,5 @@
+import sys
+
 a = 153.36361
 b = 546
 c = a + b
@@ -26,3 +28,32 @@ print(f'f_d={f_d}')
 print(f'f_e={f_e}')
 f_f = f_d + f_e
 print(f'f_f={f_f}')
+
+g = 1.52e-2
+print(f'g={g}')
+
+max_f = 1.79444e308
+print(f'max_f={max_f}')
+
+print(sys.float_info)
+b_b = 0b1011
+print(f'b_b={b_b}')
+
+h_c = 0x1f
+print(f'h_c={h_c}')
+
+a = 1.9835
+b = round(a, 2)
+print(f'a={a}')
+print(f'b={b}')
+
+f = 10
+g = 4
+r = f % g
+print(f'r={r}')
+
+h = 9
+i = int('987686876868')
+j = h + i
+
+print(f'j={j}')
