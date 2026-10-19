@@ -16,3 +16,13 @@ for r in points:
     print(r)
     for c in r:
         print(c)
+
+def sum_rows(my_list):
+    # ...
+
+print(sum_rows(points))
+
+def sum_cols(my_list):
+
+
+def sum_list(my_list):
