@@ -17,7 +17,6 @@ print(type(points[2]))
 #     for c in r:
 #         print(c)
 
-
 def sum_rows(my_list):
     row_sums = []
     row_number = 0
@@ -93,3 +92,23 @@ print(currencies_rates)
 #currencies, rates = zip(*rates_list)
 #print(currencies)
 #print(rates)
+
+l_a = [1, 2, 3]
+#l_b = [3*x for x in l_a]
+l_b = [3*x for x in l_a if x > 1]
+print(l_b)
+
+print('-' * 60)
+
+def sum_rows_single_line(my_list):
+    return [sum(row) for row in my_list]
+
+def sum_cols_zip(my_list):
+    unzip_cols = list(zip(*my_list))
+    print(unzip_cols)
+    return sum_rows_single_line(zip(*my_list))
+
+print(f'sum_rows_single_line({sum_rows_single_line(points)}')
+print(f'sum_cols_zip({sum_cols_zip(points)}')
+
+
