@@ -53,13 +53,16 @@ def time_func(func, n):
 
 
 
-n = 999
+n = 998
+n = 50000000
 # print(f'count_bowls({n})={count_bowls(n)}')
 # print(f'count_pins({n})={count_pins(n)}')
 # print(f'count_bowls_recurse({n})={count_bowls_recurse(n)}')
 # print(f'count_bowls_sequence({n})={count_bowls_sequence(n)}')
 
+#time_func(round((n * (n + 1))/2), n)
+#time_func(count_bowls(n), n)
 time_func(count_bowls, n)
 time_func(count_pins, n)
-time_func(count_bowls_recurse, n)
+#time_func(count_bowls_recurse, n)
 time_func(count_bowls_sequence, n)
