@@ -15,6 +15,7 @@ for n=5, result=15
 #    #...
 #    return
 
+from time import time
 
 def count_pins(rows):
     pins = 0
@@ -39,12 +40,26 @@ def count_bowls_recurse(n):
 
 def count_bowls_sequence(n):
     return round((n * (n + 1))/2)
-#result = count_bowls_recurse(5)
-#print(result)
+
+
+def time_func(func, n):
+    print(f'Running {func.__name__} for n={n}')
+    t0 = time()
+    res = func(n)
+    t1 = time()
+    elapsed_time = t1 - t0
+    print(f'Result: {res}')
+    print(f'Elapsed time: {elapsed_time}')
+
 
 
 n = 999
-print(f'count_bowls({n})={count_bowls(n)}')
-print(f'count_pins({n})={count_pins(n)}')
-print(f'count_bowls_recurse({n})={count_bowls_recurse(n)}')
-print(f'count_bowls_sequence({n})={count_bowls_sequence(n)}')
+# print(f'count_bowls({n})={count_bowls(n)}')
+# print(f'count_pins({n})={count_pins(n)}')
+# print(f'count_bowls_recurse({n})={count_bowls_recurse(n)}')
+# print(f'count_bowls_sequence({n})={count_bowls_sequence(n)}')
+
+time_func(count_bowls, n)
+time_func(count_pins, n)
+time_func(count_bowls_recurse, n)
+time_func(count_bowls_sequence, n)
