@@ -36,13 +36,15 @@ print(f'res={res}')
 def sum_and_multiply(a, b):
     summ = a + b
 
-    #def multiply(c, d):
+    def multiply(a, b):
     #    print(a, b, c, d)
-    #    return c * d
-    def multiply():
-        return a * b
-    multi = multiply()
-    #multi = multiply(a, b)
+        b = 100
+        return a* b
+    #def multiply():
+    #    return a * b
+    #multi = multiply()
+#    multi = multiply(191, 141)
+    multi = multiply(a, b)
     return summ, multi
 
 result = sum_and_multiply(5, 10)
