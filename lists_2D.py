@@ -76,3 +76,20 @@ print(sum(sum_cols(points)))
 #print(sum_cols_youssef(sum_cols(points)))
 
 # def sum_list(my_list):
+
+print('-' * 60)
+
+cur = ['USD', 'USD', 'PLN']
+rates = [3.8, 4.3, 1.0]
+
+rates_list = list(zip(cur, rates))
+print(rates_list)
+
+for currency, rate in zip(cur, rates):
+    print(f'{currency} -> {rate}')
+
+currencies_rates = list(zip(*rates_list))  # - unzip into a list
+print(currencies_rates)
+#currencies, rates = zip(*rates_list)
+#print(currencies)
+#print(rates)
