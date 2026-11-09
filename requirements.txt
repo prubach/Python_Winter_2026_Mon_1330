@@ -1,1 +1,5 @@
 pandas
+jupyter
+beautifulsoup4
+plotly
+requests
