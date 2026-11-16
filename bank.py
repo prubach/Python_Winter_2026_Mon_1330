@@ -20,6 +20,33 @@ class Account:
         self.id = Account.last_id
         self.__balance = 0
 
+    def deposit(self, amount: int):
+        if amount > 0:
+            # TODO: currency mismatch
+            self.__balance += amount
+        else:
+            print("Invalid value.")
+
+    def withdraw(self, amount: int):
+        if self.__balance >= amount & amount > 0:
+            self.__balance -= amount
+        else:
+            print("Invalid value or insufficient funds.")
+
+    # def deposit(self, amount):
+    #     if amount <= 0:
+    #         raise ValueError("Deposit amount must be greater than zero.")
+    #     self.__balance += amount
+    #     return self.__balance
+    #
+    # def withdraw(self, amount):
+    #     if amount <= 0:
+    #         raise ValueError("Withdrawal amount must be greater than zero.")
+    #     if amount > self.__balance:
+    #         raise ValueError("Insufficient funds for withdrawal.")
+    #     self.__balance -= amount
+    #     return self.__balance
+
     def __repr__(self):
         return f"A[{self.id}, {self.customer.last_name}, {self.__balance} {self.currency}]"
 
