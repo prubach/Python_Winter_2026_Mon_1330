@@ -25,13 +25,16 @@ class Account:
             # TODO: currency mismatch
             self.__balance += amount
         else:
+            raise InvalidAmountException(f"Invalid value {amount}")
             print("Invalid value.")
 
     def withdraw(self, amount: int):
-        if self.__balance >= amount & amount > 0:
+        if amount <= 0:
+            raise InvalidAmountException(f"Invalid value {amount}")
+        if self.__balance >= amount:
             self.__balance -= amount
         else:
-            print("Invalid value or insufficient funds.")
+            raise InsufficientFundsException(f"Insufficient funds requested/available {amount}/{self.__balance}")
 
     # def deposit(self, amount):
     #     if amount <= 0:
@@ -68,6 +71,16 @@ class Bank:
 
     def __repr__(self):
         return f'{self.name} bank[\n{self.cust_list}\n{self.acc_list}]'
+
+
+class BankException(Exception):
+    pass
+
+class InvalidAmountException(BankException):
+    pass
+
+class InsufficientFundsException(BankException):
+    pass
 
 
 
