@@ -42,3 +42,8 @@ class Bank:
     def __repr__(self):
         return f'{self.name} bank[\n{self.cust_list}\n{self.acc_list}]'
 
+
+
+#TODO
+# add deposit(amount) and withdraw(amount) methods and show how they can be used.
+# Take into account different cases/scenarios.
