@@ -12,6 +12,7 @@ class Customer:
 
 class Account:
     last_id = 1000
+    yearly_interest_rate = 0.02  # TODO - will be used to update the interest rate
 
     def __init__(self, customer, currency='USD'):
         self.customer = customer
@@ -68,6 +69,16 @@ class Bank:
         account = Account(customer, currency)
         self.acc_list.append(account)
         return account
+
+    def transfer_money(self, from_account_id, to_account_id, amount):
+        # TODO - as part of the home assignment please implement this method - as names suggest the input parameters are
+        # ids of the accounts to transfer money from and to and amount to transfer. You may need a helper method to find
+        # those accounts based on their ids.
+        pass
+
+    def run_daily_interest_updater(self):
+        # TODO - as part of the home assignment please implement this method
+        pass
 
     def __repr__(self):
         return f'{self.name} bank[\n{self.cust_list}\n{self.acc_list}]'
