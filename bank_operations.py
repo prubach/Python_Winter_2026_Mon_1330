@@ -12,6 +12,8 @@ print('---- deposit/withdraw operations ----')
 a1.deposit(200)
 a3.deposit(400)
 a1.withdraw(100)
-a3.withdraw(500)
+#a3.withdraw('500')
+import sys
+sys.exit(-1000)
 print(bank)
 
