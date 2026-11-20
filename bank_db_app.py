@@ -19,10 +19,20 @@ def add_data():
     db.add(a4)
 
 
-
+def get_customers():
+    # customers = db.query(Customer).all()
+    # for c in customers:
+    #     print(c)
+    #     print(c.accounts)
+    customers = db.query(Customer).filter(Customer.last_name.like('Bro%')).all()
+    for c in customers:
+        print(c)
+        c.email = 'brown@sgh'
+        print(c.accounts)
 
 
 if __name__ == '__main__':
     #init_db()
-    add_data()
+    #add_data()
+    get_customers()
     db.commit()
