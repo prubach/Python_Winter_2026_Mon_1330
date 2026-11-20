@@ -131,3 +131,21 @@ class InsufficientFundsException(BankException):
 #TODO
 # add deposit(amount) and withdraw(amount) methods and show how they can be used.
 # Take into account different cases/scenarios.
+
+class DBSession:
+    current_db_session = None
+
+    def engine(self):
+        url = 'sqlite:///data/bank.db'
+        return create_engine(url, echo=True) # turn echo off in production
+
+    def db_session(self):
+        if not DBSession.current_db_session:
+            Session = sessionmaker(bind=self.engine(), autoflush=False, autocommit=False)
+            current_db_session = Session()
+        return current_db_session
+
+def init_db():
+    db_session = DBSession()
+    Base.metadata.create_all(bind=db_session.engine)
+
