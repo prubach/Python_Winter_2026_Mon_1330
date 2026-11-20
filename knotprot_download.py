@@ -86,8 +86,21 @@ def run_download_loop(my_dir):
 def run_download_parallel(my_dir):
     proteins = get_proteins()
     download_link_dir = partial(download_link, my_dir)
-    with Pool(processes=4) as pool:
+    with Pool(processes=32) as pool:
         pool.map(download_link_dir, proteins)
+
+
+def run_thumbnail_seq(my_dir):
+    file_list = Path(my_dir).iterdir()
+    for f in file_list:
+        create_thumbnail((380, 380), f)
+
+
+def run_thumbnail_parallel(my_dir):
+    file_list = Path(my_dir).iterdir()
+    cr_thumb = partial(create_thumbnail, (380, 380))
+    with Pool(processes=8) as pool:
+        pool.map(cr_thumb, file_list)
 
 
 if __name__ == '__main__':
@@ -95,4 +108,8 @@ if __name__ == '__main__':
     setup_download_dir(my_dir)
     #run_download_loop(my_dir)
     #time_it(run_download_loop, my_dir) # 165s
-    time_it(run_download_parallel, my_dir) # proc=4
+    #time_it(run_download_parallel, my_dir) # proc=4 37s
+    #time_it(run_download_parallel, my_dir) # proc=8 18.5s
+    time_it(run_download_parallel, my_dir) # proc=8 11.2s
+    #time_it(run_thumbnail_seq, my_dir)
+    time_it(run_thumbnail_parallel, my_dir)
