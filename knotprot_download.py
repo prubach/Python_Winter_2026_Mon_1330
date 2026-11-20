@@ -81,8 +81,8 @@ def run_download_loop(my_dir):
     print('Downloaded {0} proteins.'.format(i))
 
 
-    if __name__ == '__main__':
-        my_dir = 'data_images'
-        setup_download_dir(my_dir)
-        #run_download_loop(my_dir)
-        timeit(run_download_loop, my_dir)
+if __name__ == '__main__':
+    my_dir = 'data_images'
+    setup_download_dir(my_dir)
+    #run_download_loop(my_dir)
+    time_it(run_download_loop, my_dir)
