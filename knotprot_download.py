@@ -56,7 +56,7 @@ def create_thumbnail(size, path):
     Creates a thumbnail of an image with the same name as image but with
     _thumbnail appended before the extension. E.g.:
 
-    >>> create_thumbnail((128, 128), 'image.jpg')
+    #>>> create_thumbnail((128, 128), 'image.jpg')
 
     A new thumbnail image is created with the name image_thumbnail.jpg
 
@@ -70,3 +70,19 @@ def create_thumbnail(size, path):
     image = Image.open(path)
     image.thumbnail(size)
     image.save(thumbnail_path)
+
+
+def run_download_loop(my_dir):
+    proteins = get_proteins()
+    i = 0
+    for protein in proteins:
+        download_link(my_dir, protein)
+        i += 1
+    print('Downloaded {0} proteins.'.format(i))
+
+
+    if __name__ == '__main__':
+        my_dir = 'data_images'
+        setup_download_dir(my_dir)
+        #run_download_loop(my_dir)
+        timeit(run_download_loop, my_dir)
