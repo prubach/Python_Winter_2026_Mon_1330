@@ -5,6 +5,9 @@ from pathlib import Path
 from urllib.request import urlopen, Request
 from time import time
 from PIL import Image
+from multiprocessing import Pool
+from functools import partial
+
 
 #SEARCH_STRING = 'https://knotprot.cent.uw.edu.pl/browse/?set=True&bridgeType=probab&knotTypes=%2B31&array=0&raw=1'
 SEARCH_STRING = 'https://knotprot.cent.uw.edu.pl/browse/?set=True&bridgeType=probab&slipknotTypes=%2B31&array=0&raw=1'
@@ -80,9 +83,16 @@ def run_download_loop(my_dir):
         i += 1
     print('Downloaded {0} proteins.'.format(i))
 
+def run_download_parallel(my_dir):
+    proteins = get_proteins()
+    download_link_dir = partial(download_link, my_dir)
+    with Pool(processes=4) as pool:
+        pool.map(download_link_dir, proteins)
+
 
 if __name__ == '__main__':
     my_dir = 'data_images'
     setup_download_dir(my_dir)
     #run_download_loop(my_dir)
-    time_it(run_download_loop, my_dir)
+    #time_it(run_download_loop, my_dir) # 165s
+    time_it(run_download_parallel, my_dir) # proc=4
