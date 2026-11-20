@@ -1,4 +1,4 @@
-from bank import Account, Customer, Bank, BankException
+from bank import Account, Customer, Bank, BankException, InsufficientFundsException
 
 bank = Bank('SGH')
 c1 = bank.create_customer('Anne', 'Brown')
@@ -10,10 +10,20 @@ a4 = bank.create_account(c2, currency='EUR')
 print(bank)
 print('---- deposit/withdraw operations ----')
 try:
-    a1.deposit(200)
     a3.deposit(400)
-    a1.withdraw(100)
-    a3.withdraw(500)
+    a3.withdraw(200)
+
+    a1.deposit(200)
+    print(f'You have: {a1.get_balance()} {a1.currency}')
+    withdraw_amount_str = input('Enter withdraw amount: ')
+    withdraw_amount = float(withdraw_amount_str)
+    a1.withdraw(withdraw_amount)
+    #a1.withdraw(100)
+
+except InsufficientFundsException as e:
+    print(e)
+    print(f'req/avl: {e.amount_req}/{e.amount_avl}')
+
 #except:
 #    print('Error')
 except BankException as e:

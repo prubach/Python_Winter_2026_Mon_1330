@@ -21,6 +21,9 @@ class Account:
         self.id = Account.last_id
         self.__balance = 0
 
+    def get_balance(self):
+        return self.__balance
+
     def deposit(self, amount: int):
         if amount > 0:
             # TODO: currency mismatch
@@ -35,7 +38,7 @@ class Account:
         if self.__balance >= amount:
             self.__balance -= amount
         else:
-            raise InsufficientFundsException(f"Insufficient funds requested/available {amount}/{self.__balance}")
+            raise InsufficientFundsException(f"Insufficient funds requested/available {amount}/{self.__balance}", amount, self.__balance)
 
     # def deposit(self, amount):
     #     if amount <= 0:
@@ -91,7 +94,13 @@ class InvalidAmountException(BankException):
     pass
 
 class InsufficientFundsException(BankException):
-    pass
+    def __init__(self, message, amount_req, amount_avl):
+        super().__init__(message)
+        self.amount_req = amount_req
+        self.amount_avl = amount_avl
+
+
+
 
 
 
