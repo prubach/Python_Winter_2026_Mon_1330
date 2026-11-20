@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, create_engine
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -147,5 +147,5 @@ class DBSession:
 
 def init_db():
     db_session = DBSession()
-    Base.metadata.create_all(bind=db_session.engine)
+    Base.metadata.create_all(bind=db_session.engine())
 
