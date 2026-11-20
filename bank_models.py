@@ -11,6 +11,9 @@ class Customer(Base):
     first_name = Column(String(100))
     last_name = Column(String(200))
     email = Column(String(300))
+    fk_bank_id = Column(Integer, ForeignKey('bank.id'), nullable=False)
+    bank = relationship('Bank', lazy='select', back_populates='cust_list')
+    accounts = relationship('Account', back_populates='customer')
 
     def __init__(self, first_name, last_name):
         self.first_name = first_name
@@ -25,6 +28,11 @@ class Account(Base):
     balance = Column(Float)
     currency = Column(String(3))
     yearly_interest_rate = Column(Float) # TODO - will be used to update the interest rate
+
+    fk_bank_id = Column(Integer, ForeignKey('bank.id'), nullable=False)
+    bank = relationship('Bank', lazy='select', back_populates='acc_list')
+    fk_customer_id = Column(Integer, ForeignKey('customer.id'), nullable=False)
+    customer = relationship(Customer, lazy='select', back_populates='accounts')
 
     def __init__(self, customer, currency='USD'):
         self.customer = customer
@@ -71,6 +79,8 @@ class Bank(Base):
     __tablename__ = 'bank'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100))
+    cust_list = relationship(Customer, back_populates='bank')
+    acc_list = relationship(Account, back_populates='bank')
 
     def __init__(self, name):
         self.name = name
