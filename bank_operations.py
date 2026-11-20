@@ -40,26 +40,31 @@ a1.deposit(200)
 
 withdraw_amount_from_input(a1)
 
-# try:
-#     a3.deposit(400)
-#     a3.withdraw(200)
-#
-#     a1.deposit(200)
-#     print(f'You have: {a1.get_balance()} {a1.currency}')
-#     withdraw_amount_str = input('Enter withdraw amount: ')
-#     withdraw_amount = float(withdraw_amount_str)
-#     a1.withdraw(withdraw_amount)
-#     #a1.withdraw(100)
-#
-# except InsufficientFundsException as e:
-#     print(e)
-#     print(f'req/avl: {e.amount_req}/{e.amount_avl}')
-# except ValueError as e:
-#     print('The amount provided is invalid')
-# #except:
-# #    print('Error')
-# except BankException as e:
-#     print(e)
+try:
+    a3.deposit(400)
+    a3.withdraw(200)
+
+    # a = 1414
+    # b = '2545'
+    # c = a + b
+    a1.deposit(200)
+    print(f'You have: {a1.get_balance()} {a1.currency}')
+    withdraw_amount_str = input('Enter withdraw amount: ')
+    withdraw_amount = float(withdraw_amount_str)
+    a1.withdraw(withdraw_amount)
+    #a1.withdraw(100)
+except InsufficientFundsException as e:
+    print(e)
+    print(f'req/avl: {e.amount_req}/{e.amount_avl}')
+except ValueError as e:
+    print('The amount provided is invalid')
+except BankException as e:
+    print(e)
+# except:
+#    print('Error')
+# except Exception as e:  # Don't use it as this will hide every error or bug
+#     print(f'SEVERE error {e}')
+#     raise e
 
 import sys
 #sys.exit(-1000)
